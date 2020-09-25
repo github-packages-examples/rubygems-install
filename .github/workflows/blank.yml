@@ -8,6 +8,19 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Add Gemfile
+          cat > Gemfile << EOM
+          source "https://rubygems.pkg.github.com/${{ github.repository_owner }}" do
+            gem "rubygems-publish"
+          end
+          EOM
+
+      - name: Authenticate using bundle
+        run: bundle config https://rubygems.pkg.github.com/${{ github.repository_owner }} token:${{ secrets.READ_PACKAGES_TOKEN }}
+
+      - name: Install using bundle
+        run: bundle install
+
       - name: Add ~/.gemrc
         run: |
           cat > ~/.gemrc << EOM
