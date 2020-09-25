@@ -26,3 +26,13 @@ jobs:
 
       - name: Install using Bundler
         run: bundle install
+
+      - name: Add main.rb
+        run: |
+          cat > main.rb << EOM
+          require 'rubygems-publish'
+          hello
+          EOM
+
+      - name: Run main.rb
+        run: ruby main.rb
