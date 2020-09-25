@@ -19,7 +19,7 @@ jobs:
           - https://token:${{ secrets.READ_PACKAGES_TOKEN }}@rubygems.pkg.github.com/${{ github.repository_owner }}/
           :update_sources: true
           :verbose: true  
-          EOM   
+          EOM
 
       - name: Install the Gem
         run: gem install rubygems-publish
