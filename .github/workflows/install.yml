@@ -24,7 +24,7 @@ jobs:
         run: |
           cat > main.rb << EOM
           require 'rubygems-publish'
-          RubyGemsPublish.hello
+          hello
           EOM
 
       - name: Authenticate using Bundler
