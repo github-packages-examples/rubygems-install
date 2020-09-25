@@ -21,24 +21,8 @@ jobs:
           end
           EOM
 
-      - name: Authenticate using bundle
+      - name: Authenticate using Bundler
         run: bundle config https://rubygems.pkg.github.com/${{ github.repository_owner }} token:${{ secrets.READ_PACKAGES_TOKEN }}
 
-      - name: Install using bundle
+      - name: Install using Bundler
         run: bundle install
-
-      - name: Add ~/.gemrc
-        run: |
-          cat > ~/.gemrc << EOM
-          ---
-          :backtrace: false
-          :bulk_threshold: 1000
-          :sources:
-          - https://rubygems.org/
-          - https://token:${{ secrets.READ_PACKAGES_TOKEN }}@rubygems.pkg.github.com/${{ github.repository_owner }}/
-          :update_sources: true
-          :verbose: true  
-          EOM
-
-      - name: Install the Gem
-        run: gem install rubygems-publish
