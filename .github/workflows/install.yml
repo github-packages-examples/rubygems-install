@@ -1,8 +1,7 @@
-on:
-  push:
+on: [push, repository_dispatch]
 
 jobs:
-  build:
+  install:
     runs-on: ubuntu-latest
 
     steps:
