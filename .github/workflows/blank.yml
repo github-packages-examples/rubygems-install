@@ -1,0 +1,25 @@
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Add ~/.gemrc
+        run: |
+          cat > ~/.gemrc << EOM
+          ---
+          :backtrace: false
+          :bulk_threshold: 1000
+          :sources:
+          - https://rubygems.org/
+          - https://token:${{ secrets.READ_PACKAGES_TOKEN }}@rubygems.pkg.github.com/${{ github.repository_owner }}/
+          :update_sources: true
+          :verbose: true  
+          EOM   
+
+      - name: Install the Gem
+        run: gem install rubygems-publish
