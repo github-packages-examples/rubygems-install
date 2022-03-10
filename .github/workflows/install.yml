@@ -12,6 +12,8 @@ jobs:
         with:
           ruby-version: 2.6.x
 
+      - run: bundle version
+
       - name: Add Gemfile
         run: |
           cat > Gemfile << EOM
