@@ -67,6 +67,8 @@ jobs:
 
       - run: gem search '^rubygems-publish$' --all --no-prerelease
 
+      - run: curl https://${{ secrets.GITHUB_TOKEN }}@rubygems.pkg.github.com/${{ github.repository_owner }}/api/v1/versions/rubygems-publish/latest.json
+
       - name: Add main.rb
         run: |
           cat > main.rb << EOM
